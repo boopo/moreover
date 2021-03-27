@@ -1,3 +1,4 @@
 # moreover
-这里是矿且APP的SpringBoot后端
-采用 Mysql+Redis+MongoDB实现
+矿且APP 后端
+
+在做了(File -> NewProject)

@@ -13,7 +13,7 @@ public class JwtUtil {
     /**
      * 这个秘钥是防止JWT被篡改的关键，决不能泄露
      */
-    private final static String secretKey = "jsonwebtoken";
+    private final static String secretKey = "jsonwebtoken1";
     /**
      * 过期时间目前设置成2天，这个配置随业务需求而定
      */

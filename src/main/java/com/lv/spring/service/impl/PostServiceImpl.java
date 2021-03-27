@@ -59,7 +59,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> findAll() {
-        List<Post> list = new ArrayList();
+        List<Post> list;
         list = postRepository.findAll();
         return list;
     }

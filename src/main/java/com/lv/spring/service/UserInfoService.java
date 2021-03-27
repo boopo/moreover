@@ -12,4 +12,5 @@ public interface UserInfoService {
      List findFllow(String username);
      List findFllowers(String username);
      String getExp(Integer exp);
+     String changehead(String base64);
 }

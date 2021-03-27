@@ -99,4 +99,12 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfoRepository.save(userInfo);
         return userInfo.getExp().toString();
     }
+
+    @Override
+    public String changehead(String base64) {
+        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        userInfo.setHead(base64);
+        userInfoRepository.save(userInfo);
+        return userInfo.getHead();
+    }
 }
