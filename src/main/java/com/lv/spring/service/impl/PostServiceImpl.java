@@ -29,7 +29,6 @@ public class PostServiceImpl implements PostService {
         post.setIsDeleted(0);
         post.setPublisher(UserContext.getCurrentUserName());
         Post p1 = postRepository.save(post);
-
     }
 
     @Override

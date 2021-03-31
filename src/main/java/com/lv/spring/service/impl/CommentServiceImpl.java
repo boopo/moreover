@@ -3,14 +3,18 @@ package com.lv.spring.service.impl;
 import com.lv.spring.context.UserContext;
 import com.lv.spring.entity.CommentPost;
 import com.lv.spring.entity.Post;
+import com.lv.spring.enums.ResultVOEnum;
+import com.lv.spring.exceptioin.ApiException;
 import com.lv.spring.repository.CommentRepository;
 import com.lv.spring.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -52,13 +56,35 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public boolean star(String s) {
-        return false;
+    public boolean star(String id) {
+        CommentPost postInfo = getCommentPost(id);
+        List<String> list = postInfo.getStarList();
+        Optional<String> f = list.stream().filter(p -> list.contains(UserContext.getCurrentUserName())).findFirst();
+        if(f.isPresent()){
+            throw new ApiException(ResultVOEnum.REPEAT_FORBIDDEN);
+        }
+        Integer star = list.size();
+        postInfo.setStar(star);
+        list.add(UserContext.getCurrentUserName());
+        postInfo.setStarList(list);
+        commentRepository.save(postInfo);
+        return true;
     }
 
     @Override
-    public boolean unstar(String s) {
-        return false;
+    public boolean unstar(String id) {
+        CommentPost postInfo = getCommentPost(id);
+        List<String> list = postInfo.getStarList();
+        Optional<String> f = list.stream().filter(p -> list.contains(UserContext.getCurrentUserName())).findFirst();
+        if(!f.isPresent()){
+            throw new ApiException(ResultVOEnum.REPEAT_FORBIDDEN);
+        }
+        Integer star = list.size() -1;
+        list.remove(UserContext.getCurrentUserName());
+        postInfo.setStarList(list);
+        postInfo.setStar(star);
+        commentRepository.save(postInfo);
+        return true;
     }
 
     @Override
@@ -68,7 +94,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentPost commit(String message, String postId) {
-        List<String>list = null;
+        List<String>list = new ArrayList<>();
         CommentPost commentPost = new CommentPost();
         commentPost.setCreateTime(new Date());
         commentPost.setUpdateTime(new Date());
@@ -85,7 +111,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentPost commit(String message, String postId, String parentId) {
-        List<String>list = null;
+        List<String>list = new ArrayList<>();
         CommentPost commentPost = new CommentPost();
         commentPost.setCreateTime(new Date());
         commentPost.setUpdateTime(new Date());
@@ -98,5 +124,10 @@ public class CommentServiceImpl implements CommentService {
         commentPost.setPublisher(UserContext.getCurrentUserName());
         commentRepository.save(commentPost);
         return commentPost;
+    }
+
+    @Override
+    public CommentPost getCommentPost(String id) {
+        return commentRepository.findById(id).get();
     }
 }

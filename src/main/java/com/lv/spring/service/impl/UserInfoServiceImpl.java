@@ -3,6 +3,8 @@ package com.lv.spring.service.impl;
 import com.lv.spring.context.UserContext;
 import com.lv.spring.entity.User;
 import com.lv.spring.entity.UserInfo;
+import com.lv.spring.enums.ResultVOEnum;
+import com.lv.spring.exceptioin.ApiException;
 import com.lv.spring.repository.UserInfoRepository;
 import com.lv.spring.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
@@ -42,14 +45,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     public boolean star(String username) {
         UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
         //添加用户关注列表
-        List<String> list = new ArrayList<>();
-        list = userInfo.getFollow();
+        List<String> list = userInfo.getFollow();
+        Optional<String> f = list.stream().filter(p -> list.contains(username)).findFirst();
+        if(f.isPresent()){
+            throw new ApiException(ResultVOEnum.REPEAT_FORBIDDEN);
+        }
+
         list.add(username);
         userInfo.setFollow(list);
         //修改被关注着列表
         UserInfo userBeFllowed = getInfo(username);
-        List<String> list1 = new ArrayList<>();
-        list1 = userBeFllowed.getFollowers();
+        List<String> list1 = userBeFllowed.getFollowers();
         list1.add(UserContext.getCurrentUserName());
         userBeFllowed.setFollowers(list1);
         userInfoRepository.save(userInfo);
@@ -61,8 +67,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     public boolean unstar(String username) {
         UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
         //添加用户关注列表
-        List<String> list = new ArrayList<>();
-        list = userInfo.getFollow();
+        List<String> list = userInfo.getFollow();
+
+        Optional<String> f = list.stream().filter(p -> list.contains(username)).findFirst();
+        if(f.isPresent()){
+            throw new ApiException(ResultVOEnum.USER_NOT_EXISTS);
+        }
         list.remove(username);
         userInfo.setFollow(list);
         //修改被关注着列表
@@ -78,7 +88,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public List findFllow(String username) {
-        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        UserInfo userInfo = getInfo(username);
         List<String> list;
         list = userInfo.getFollow();
         return list;
@@ -86,7 +96,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public List findFllowers(String username) {
-        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        UserInfo userInfo = getInfo(username);
         List<String> list;
         list = userInfo.getFollowers();
         return list;

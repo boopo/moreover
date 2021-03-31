@@ -24,8 +24,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ApiException.class)
     @ResponseBody
     public ResultVO error(ApiException e) {
-        e.printStackTrace();
-        return ResultVO.fail();
+        //e.printStackTrace();
+        return ResultVO.build(e.getCode(),e.getMessage());
     }
 
     //参数校验异常处理

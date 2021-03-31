@@ -25,7 +25,6 @@ public class CommentPost extends BaseMongoEntity {
 
     private Integer star;
 
-
     private List starList;
 
     private String publisher;

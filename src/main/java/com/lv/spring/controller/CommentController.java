@@ -25,6 +25,9 @@ public class CommentController {
     public ResultVO getCommentParent(@PathVariable String postId,
                                      @PathVariable Integer page,
                                      @PathVariable Integer limit ){
+        System.out.println(postId);
+        System.out.println(page);
+        System.out.println(limit);
 
         return ResultVO.ok(commentService.getCommentParentsByPage(postId, page, limit));
     }
@@ -37,12 +40,14 @@ public class CommentController {
 
     @PutMapping("/star/{commentId}")
     public ResultVO startComment(@PathVariable String commentId){
-        return ResultVO.ok();
+        boolean  is_star = commentService.star(commentId);
+        return is_star?ResultVO.ok():ResultVO.fail();
     }
 
     @PutMapping("/unstar/{commentId}")
     public ResultVO unstarComment(@PathVariable String commentId){
-        return ResultVO.ok();
+        boolean is_unstar = commentService.unstar(commentId);
+        return is_unstar?ResultVO.ok():ResultVO.fail();
     }
 
     @GetMapping("/star/{commentId}")

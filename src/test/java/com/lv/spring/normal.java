@@ -3,17 +3,15 @@ package com.lv.spring;
 import com.lv.spring.enums.PermissionEnum;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 public class normal {
     public static void main(String[] args) {
-        System.out.println(check(2,2));
-        System.out.println(check(2,1));
-        System.out.println(check(2,32));
-        System.out.println(check(2,1));
-        System.out.println(check(4,2));
-        System.out.println(check(8,32));
-        System.out.println(check(8,32));
+//
+        findList();
     }
 
     public static void heelo(){
@@ -37,5 +35,15 @@ public class normal {
         if (self == (PermissionEnum.ROOT.getAuthority())) return true;
         if ((PermissionEnum.PROHIBIT.getAuthority() & self) == PermissionEnum.PROHIBIT.getAuthority()) return false;
         return (code & self) == code;
+    }
+
+    public static void findList(){
+        List<String> list1 = new ArrayList<>();
+        list1.add("08183109");
+        list1.add("08182222");
+        System.out.println(list1);
+        Optional<String> f = list1.stream().filter(p -> list1.contains("08183109")).findFirst();
+        System.out.println(f.isPresent());
+        System.out.println(f.get());
     }
 }

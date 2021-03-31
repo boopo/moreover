@@ -13,7 +13,9 @@ public enum ResultVOEnum {
     PASSWORD_WRONG(1001,"密码错误"),
     REGISTERED(1002,"用户已注册"),
     PARAMETER_ERROR(1003,"请检查你的参数是否正确"),
-    NOT_FOUND(1004,"资源不存在")
+    NOT_FOUND(1004,"资源不存在"),
+    REPEAT_FORBIDDEN(1005,"禁止重复操作"),
+    USER_NOT_EXISTS(1006,"该用户不在列表中")
     ;
 
 

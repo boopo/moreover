@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/userinfo")
 public class UserInfoController {
     @Autowired
     UserInfoService userInfoService;
@@ -25,7 +26,7 @@ public class UserInfoController {
         return ResultVO.ok(userInfo);
     }
 
-    @GetMapping("/nickname/{name}")
+    @PutMapping("/nickname/{name}")
     public ResultVO updateNickName(@PathVariable String name) {
         return userInfoService.changeNickName(name)?ResultVO.ok():ResultVO.fail();
     }
@@ -40,13 +41,13 @@ public class UserInfoController {
         return userInfoService.unstar(username)?ResultVO.ok():ResultVO.fail();
     }
 
-    @GetMapping("/fllow/{username}")
+    @GetMapping("/follow/{username}")
     public ResultVO fllow(@PathVariable String username){
         List<String> list = userInfoService.findFllow(username);
         return ResultVO.ok(list);
     }
 
-    @GetMapping("/fllowers/{username}")
+    @GetMapping("/followers/{username}")
     public ResultVO fllowers(@PathVariable String username){
         List<String> list = userInfoService.findFllowers(username);
         return ResultVO.ok(list);

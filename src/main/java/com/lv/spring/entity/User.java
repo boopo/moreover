@@ -1,7 +1,6 @@
 package com.lv.spring.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.lv.spring.annotation.ValidExceptionCode;
 import com.lv.spring.enums.ResultVOEnum;
 import lombok.Data;
@@ -41,7 +40,7 @@ public class User {
 CREATE TABLE USER (
 	 id BIGINT (20) NOT NULL AUTO_INCREMENT,
          username VARCHAR (100) NULL DEFAULT NULL ,
-	 PASSWORD VARCHAR(100) DEFAULT NULL,
+	 password VARCHAR(100) DEFAULT NULL,
 	 create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	 update_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	 deleted INT(10) NOT NULL DEFAULT 0,
