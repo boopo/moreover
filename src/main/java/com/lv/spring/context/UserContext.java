@@ -11,9 +11,7 @@ public class UserContext {
         user.set(userName);
     }
 
-    public static void addId(String id){
 
-    }
 
     public static void remove() {
         user.remove();

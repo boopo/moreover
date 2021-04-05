@@ -1,9 +1,0 @@
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://sh-cynosdbmysql-grp-56rhvxf6.sql.tencentcdb.com:28981/Lv?serverTimezone=GMT%2B8&characterEncoding=UTF-8
-    username: root
-    password: Flying!0
-  data:
-    mongodb:
-      uri: mongodb://175.27.164.194:27017/moreover

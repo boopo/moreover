@@ -3,16 +3,12 @@ package com.lv.spring.controller;
 import com.lv.spring.entity.CommentPost;
 import com.lv.spring.service.CommentService;
 import com.lv.spring.vo.ResultVO;
-import io.swagger.models.auth.In;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.*;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/comments")
