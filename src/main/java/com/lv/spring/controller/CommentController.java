@@ -46,11 +46,6 @@ public class CommentController {
         return is_unstar?ResultVO.ok():ResultVO.fail();
     }
 
-    @GetMapping("/star/{commentId}")
-    public ResultVO startlist(@PathVariable String commentId ) {
-        return ResultVO.ok();
-    }
-
     @PostMapping("/post/{postId}")
     public ResultVO postComment(@PathVariable String postId,
                                 @RequestBody @Validated CommentPost commentPost){

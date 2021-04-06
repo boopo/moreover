@@ -1,5 +1,6 @@
 package com.lv.spring.service.impl;
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.lv.spring.context.UserContext;
 import com.lv.spring.entity.User;
 import com.lv.spring.entity.UserInfo;
@@ -53,11 +54,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         list.add(username);
         userInfo.setFollow(list);
+        userInfo.setCountOfFollow(list.size());
         //修改被关注着列表
         UserInfo userBeFllowed = getInfo(username);
         List<String> list1 = userBeFllowed.getFollowers();
         list1.add(UserContext.getCurrentUserName());
         userBeFllowed.setFollowers(list1);
+        userBeFllowed.setCountOfFollowers(list1.size());
         userInfoRepository.save(userInfo);
         userInfoRepository.save(userBeFllowed);
         return true;
@@ -117,4 +120,39 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfoRepository.save(userInfo);
         return userInfo.getHead();
     }
+
+    @Override
+    public String saveSex(String sex) {
+        if(sex == null){
+            throw  new ApiException(ResultVOEnum.NOT_FOUND);
+        }
+        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        userInfo.setSex(sex);
+        userInfoRepository.save(userInfo);
+        return sex;
+    }
+
+    @Override
+    public String changeDescribe(String describe) {
+        if(describe == null) {
+            throw new ApiException(ResultVOEnum.NOT_FOUND);
+        }
+        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        userInfo.setDescribe(describe);
+        userInfoRepository.save(userInfo);
+        return describe;
+    }
+
+    @Override
+    public String changeBackGround(String url) {
+        if( url == null){
+            throw new ApiException(ResultVOEnum.NOT_FOUND);
+        }
+        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        userInfo.setBack(url);
+        userInfoRepository.save(userInfo);
+        return url;
+    }
+
+
 }

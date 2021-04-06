@@ -13,5 +13,6 @@ public interface PostService {
     List<Post> findAll();
     Page<Post> findByPage(Integer page, Integer limit);
     Post getOnePost(String id);
-
+    void starPost(String id);
+    void collectPost(String id);
 }

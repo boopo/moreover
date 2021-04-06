@@ -2,18 +2,24 @@ package com.lv.spring.service.impl;
 
 import com.lv.spring.context.UserContext;
 import com.lv.spring.entity.Post;
+import com.lv.spring.entity.UserInfo;
 import com.lv.spring.enums.ResultVOEnum;
 import com.lv.spring.exceptioin.ApiException;
 import com.lv.spring.repository.PostRepository;
+import com.lv.spring.repository.UserInfoRepository;
 import com.lv.spring.service.PostService;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -21,13 +27,23 @@ public class PostServiceImpl implements PostService {
     @Autowired
     PostRepository postRepository;
 
+    @Autowired
+    UserInfoRepository userInfoRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
+
     @Override
     public void save(Post post) {
         post.setStar(0);
         post.setCreateTime(new Date());
         post.setUpdateTime(new Date());
         post.setIsDeleted(0);
+        post.setStar(0);
         post.setPublisher(UserContext.getCurrentUserName());
+        List<String> list = new ArrayList();
+        post.setStarList(list);
+        post.setCollection(0);
         Post p1 = postRepository.save(post);
     }
 
@@ -81,5 +97,39 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getOnePost(String id){
         return postRepository.findById(id).get();
+    }
+
+    @Override
+    public void starPost(String id) {
+        String username = UserContext.getCurrentUserName();
+        Post post = getOnePost(id);
+        List<String> list = post.getStarList();
+        Optional<String> f = list.stream().filter(p -> list.contains(username)).findFirst();
+        if(f.isPresent()){
+            throw new ApiException(ResultVOEnum.REPEAT_FORBIDDEN);
+        }
+        list.add(username);
+        post.setStarList(list);
+        post.setStar(list.size());
+        postRepository.save(post);
+    }
+
+    @Override
+    public void collectPost(String id) {
+        String username = UserContext.getCurrentUserName();
+        Query query = new Query(Criteria.where("username").is(username));
+        UserInfo userInfo = mongoTemplate.findOne(query, UserInfo.class);
+
+        List<String> list = userInfo.getCollection();
+        Optional<String> f = list.stream().filter(p -> list.contains(id)).findFirst();
+        if(f.isPresent()){
+            throw new ApiException(ResultVOEnum.REPEAT_FORBIDDEN);
+        }
+        list.add(id);
+        Post post = getOnePost(id);
+        post.setCollection(post.getCollection()+1);
+        postRepository.save(post);
+        userInfoRepository.save(userInfo);
+
     }
 }

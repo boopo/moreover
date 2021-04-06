@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 
 @Data
@@ -28,6 +29,13 @@ public class UserInfo implements Serializable {
     private Integer exp;
     private List<String> follow;
     private List<String> followers;
+    private Integer countOfFollowers;
+    private Integer countOfFollow;
+    private String sex;
+    private String describe;
+    private Integer stars;
+    private List<String> collection;
+    private String back;
     @NotNull
     @ValidExceptionCode(type = ResultVOEnum.PARAMETER_ERROR)
     private String head;

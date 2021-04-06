@@ -1,8 +1,5 @@
 package com.lv.spring.context;
 
-import io.swagger.models.auth.In;
-
-import java.util.Map;
 
 public class UserContext {
     private static final ThreadLocal<String> user = new ThreadLocal<String>();

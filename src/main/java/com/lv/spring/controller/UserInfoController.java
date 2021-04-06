@@ -61,9 +61,29 @@ public class UserInfoController {
         return ResultVO.ok(map);
     }
 
-    @PutMapping("/userinfo")
+    @PutMapping("/head")
     public ResultVO change(@RequestBody @Validated UserInfo userInfo  ) {
         userInfoService.changehead(userInfo.getHead());
         return ResultVO.ok();
     }
+
+    @PostMapping("/sex")
+    public ResultVO changeInfo(@RequestBody UserInfo userInfo) {
+        userInfoService.saveSex(userInfo.getSex());
+        return ResultVO.ok();
+    }
+
+    @PostMapping("/describe")
+    public ResultVO changeDesc(@RequestBody UserInfo userInfo) {
+        userInfoService.changeDescribe(userInfo.getDescribe());
+        return ResultVO.ok();
+    }
+
+    @PostMapping("/background")
+    public ResultVO chageBack(@RequestBody UserInfo userInfo) {
+        userInfoService.changeBackGround(userInfo.getBack());
+        return ResultVO.ok();
+    }
+
+//    @PutMapping("/userinfo")
 }

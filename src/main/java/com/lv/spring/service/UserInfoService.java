@@ -13,4 +13,7 @@ public interface UserInfoService {
      List findFllowers(String username);
      String getExp(Integer exp);
      String changehead(String base64);
+     String saveSex(String sex);
+     String changeDescribe(String desccribe);
+     String changeBackGround(String url);
 }

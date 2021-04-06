@@ -48,8 +48,11 @@ public class Post extends BaseMongoEntity {
     private String detail;
 
     private Integer star;
+    private List<String> starList;
+    private Integer collection;
 
     private List<String> thumbnailImage;
     private List<String> originalImage;
+
 
 }

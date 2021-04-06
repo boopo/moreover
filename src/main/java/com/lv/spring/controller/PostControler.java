@@ -1,12 +1,6 @@
 package com.lv.spring.controller;
 
-
-import com.baomidou.mybatisplus.extension.api.R;
-import com.lv.spring.annotation.Permission;
 import com.lv.spring.entity.Post;
-import com.lv.spring.enums.PermissionEnum;
-import com.lv.spring.enums.ResultVOEnum;
-import com.lv.spring.repository.PostRepository;
 import com.lv.spring.service.PostService;
 import com.lv.spring.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +46,18 @@ public class PostControler {
     public ResultVO getPag(@PathVariable Integer page,
                            @PathVariable Integer limit){
         return ResultVO.ok(postService.findByPage(page,limit));
+    }
+
+    @PostMapping("/star/{postId}")
+    public ResultVO starPost(@PathVariable String postId){
+        postService.starPost(postId);
+        return ResultVO.ok();
+    }
+
+    @PostMapping("/collect/{postId}")
+    public ResultVO collect(@PathVariable String postId) {
+        postService.collectPost(postId);
+        return ResultVO.ok();
     }
 
 

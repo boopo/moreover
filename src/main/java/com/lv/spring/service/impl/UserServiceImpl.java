@@ -7,8 +7,12 @@ import com.lv.spring.mapper.UserMapper;
 import com.lv.spring.repository.PostRepository;
 import com.lv.spring.repository.UserInfoRepository;
 import com.lv.spring.service.UserService;
+import com.lv.spring.utils.Base64;
 import com.lv.spring.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +26,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserInfoRepository userInfoRepository;
-
 
     @Override
     public boolean UserRegister(User user) {
@@ -40,9 +43,16 @@ public class UserServiceImpl implements UserService {
         userInfo.setUsername(user.getUsername());
         userInfo.setExp(0);
         userInfo.setNickname(user.getUsername());
+        userInfo.setHead(Base64.getDefaultHead());
+        userInfo.setStars(0);
+        userInfo.setBack("https://img.imgdb.cn/item/606c649e8322e6675ce42f97.jpg");
+        userInfo.setSex("未知");
+        userInfo.setCountOfFollow(0);
+        userInfo.setCountOfFollowers(0);
         List<String> list = new ArrayList<>();
         userInfo.setFollow(list);
         userInfo.setFollowers(list);
+        userInfo.setCollection(list);
         userInfoRepository.save(userInfo);
         return true;
     }
