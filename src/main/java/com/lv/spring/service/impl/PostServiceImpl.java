@@ -1,5 +1,4 @@
 package com.lv.spring.service.impl;
-
 import com.lv.spring.context.UserContext;
 import com.lv.spring.entity.Post;
 import com.lv.spring.entity.UserInfo;
@@ -8,14 +7,12 @@ import com.lv.spring.exceptioin.ApiException;
 import com.lv.spring.repository.PostRepository;
 import com.lv.spring.repository.UserInfoRepository;
 import com.lv.spring.service.PostService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +41,7 @@ public class PostServiceImpl implements PostService {
         List<String> list = new ArrayList();
         post.setStarList(list);
         post.setCollection(0);
+        post.setHead("https://moreover.atcumt.com/userinfo/head/"+UserContext.getCurrentUserName());
         Post p1 = postRepository.save(post);
     }
 

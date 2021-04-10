@@ -16,4 +16,5 @@ public interface UserInfoService {
      String saveSex(String sex);
      String changeDescribe(String desccribe);
      String changeBackGround(String url);
+     String getHead(String username);
 }

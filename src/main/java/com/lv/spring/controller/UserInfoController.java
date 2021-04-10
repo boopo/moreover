@@ -67,6 +67,12 @@ public class UserInfoController {
         return ResultVO.ok();
     }
 
+    @GetMapping("/head/{username}")
+    public ResultVO gethead(@PathVariable String username){
+        String head = userInfoService.getHead(username);
+        return ResultVO.ok(head);
+    }
+
     @PostMapping("/sex")
     public ResultVO changeInfo(@RequestBody UserInfo userInfo) {
         userInfoService.saveSex(userInfo.getSex());

@@ -27,6 +27,7 @@ com\lv\spring\context\UserContext.class
 com\lv\spring\enums\ResultVOEnum.class
 com\lv\spring\utils\JwtUtil.class
 com\lv\spring\service\UserInfoService.class
+com\lv\spring\utils\Base64.class
 com\lv\spring\entity\CommentPost.class
 com\lv\spring\controller\PostControler.class
 com\lv\spring\repository\CommentRepository.class

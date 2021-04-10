@@ -25,8 +25,7 @@ public class Post extends BaseMongoEntity {
     @Indexed
     private String publisher;
 
-    @Indexed
-    private String userId;
+    private String head;
 
     @NotNull
     @ValidExceptionCode(type = ResultVOEnum.PARAMETER_ERROR)

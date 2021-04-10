@@ -154,5 +154,12 @@ public class UserInfoServiceImpl implements UserInfoService {
         return url;
     }
 
+    @Override
+    public String getHead(String username) {
+        if(username == null) throw  new ApiException(ResultVOEnum.NOT_FOUND);
+        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        return userInfo.getHead();
+    }
+
 
 }
