@@ -7,3 +7,5 @@ spring:
   data:
     mongodb:
       uri: mongodb://175.27.164.194:27017/moreover
+
+    

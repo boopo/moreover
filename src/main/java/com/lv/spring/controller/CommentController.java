@@ -21,9 +21,6 @@ public class CommentController {
     public ResultVO getCommentParent(@PathVariable String postId,
                                      @PathVariable Integer page,
                                      @PathVariable Integer limit ){
-        System.out.println(postId);
-        System.out.println(page);
-        System.out.println(limit);
 
         return ResultVO.ok(commentService.getCommentParentsByPage(postId, page, limit));
     }

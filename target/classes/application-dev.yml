@@ -6,7 +6,7 @@ spring:
     password: 123456
   data:
     mongodb:
-      uri: mongodb://175.27.164.194:27017/moreover
+      uri: mongodb://127.0.0.1:27017/moreover
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
