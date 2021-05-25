@@ -2,6 +2,7 @@ package com.lv.spring;
 
 import com.lv.spring.enums.PermissionEnum;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,9 +10,25 @@ import java.util.List;
 import java.util.Optional;
 
 public class normal {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 //
-        findList();
+        //findList();
+        //eq();
+        test();
+        System.out.println(new Date());
+        Date date = new Date();
+        String str = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(str);
+        System.out.println(sdf.format(date));
+        Date mydate = sdf.parse(String.valueOf(date));
+    }
+
+
+
+
+    public static void test(){
+        int a = 1;
+
     }
 
     public static void heelo(){
@@ -45,5 +62,10 @@ public class normal {
         Optional<String> f = list1.stream().filter(p -> list1.contains("08183109")).findFirst();
         System.out.println(f.isPresent());
         System.out.println(f.get());
+    }
+
+    public static void eq(){
+        System.out.println(30/15);
+        System.out.println(30%15);
     }
 }

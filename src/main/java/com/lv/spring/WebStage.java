@@ -7,11 +7,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 @SpringBootApplication
 @MapperScan("com.lv.spring.mapper")
 public class WebStage implements WebMvcConfigurer {
     public static void main(String[] args) {
         SpringApplication.run(WebStage.class, args);
+    }
+
+    @PostConstruct
+    public void init(){
+        // Setting Spring Boot SetTimeZone
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
     }
 
     @Override

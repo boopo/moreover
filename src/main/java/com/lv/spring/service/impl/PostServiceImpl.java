@@ -13,6 +13,9 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,10 +34,11 @@ public class PostServiceImpl implements PostService {
     MongoTemplate mongoTemplate;
 
     @Override
-    public void save(Post post) {
+    public void save(Post post) throws ParseException {
+        Date date = new Date();
         post.setStar(0);
-        post.setCreateTime(new Date());
-        post.setUpdateTime(new Date());
+        post.setCreateTime(date);
+        post.setUpdateTime(date);
         post.setIsDeleted(0);
         post.setStar(0);
         post.setPublisher(UserContext.getCurrentUserName());
@@ -42,7 +46,7 @@ public class PostServiceImpl implements PostService {
         post.setStarList(list);
         post.setCollection(0);
         post.setHead("https://moreover.atcumt.com/userinfo/head/"+UserContext.getCurrentUserName());
-        Post p1 = postRepository.save(post);
+        postRepository.save(post);
     }
 
     @Override
@@ -83,6 +87,7 @@ public class PostServiceImpl implements PostService {
         Pageable pageable = PageRequest.of(page - 1 , limit, sort);
         Post post = new Post();
         post.setIsDeleted(0);
+
 
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)

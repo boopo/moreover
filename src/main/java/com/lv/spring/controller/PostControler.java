@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/posts")
 public class PostControler {
@@ -15,7 +17,7 @@ public class PostControler {
     PostService postService;
 
     @PostMapping("/post")
-    public ResultVO post(@RequestBody @Validated  Post post){
+    public ResultVO post(@RequestBody @Validated  Post post) throws ParseException {
         postService.save(post);
         return ResultVO.ok();
     }
