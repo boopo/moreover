@@ -30,6 +30,7 @@ public class CommentServiceImpl implements CommentService {
         CommentPost commentPost = new CommentPost();
         commentPost.setIsDeleted(0);
         commentPost.setParentId("0");
+        commentPost.setIsChildren(0);
         commentPost.setPostId(postId);
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
@@ -46,6 +47,7 @@ public class CommentServiceImpl implements CommentService {
         CommentPost commentPost = new CommentPost();
         commentPost.setIsDeleted(0);
         commentPost.setParentId(parentId);
+        commentPost.setIsChildren(1);
         commentPost.setPostId(postId);
         ExampleMatcher matcher = ExampleMatcher.matching()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
@@ -63,9 +65,9 @@ public class CommentServiceImpl implements CommentService {
         if(f.isPresent()){
             throw new ApiException(ResultVOEnum.REPEAT_FORBIDDEN);
         }
+        list.add(UserContext.getCurrentUserName());
         Integer star = list.size();
         postInfo.setStar(star);
-        list.add(UserContext.getCurrentUserName());
         postInfo.setStarList(list);
         commentRepository.save(postInfo);
         return true;
@@ -101,6 +103,7 @@ public class CommentServiceImpl implements CommentService {
         commentPost.setPostId(postId);
         commentPost.setParentId("0");
         commentPost.setStar(0);
+        commentPost.setIsChildren(0);
         commentPost.setStarList(list);
         commentPost.setMessage(message);
         commentPost.setIsDeleted(0);
@@ -117,6 +120,7 @@ public class CommentServiceImpl implements CommentService {
         commentPost.setUpdateTime(new Date());
         commentPost.setPostId(postId);
         commentPost.setParentId(parentId);
+        commentPost.setIsChildren(1);
         commentPost.setStar(0);
         commentPost.setStarList(list);
         commentPost.setMessage(message);
