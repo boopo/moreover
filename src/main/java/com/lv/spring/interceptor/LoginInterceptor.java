@@ -65,9 +65,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         String info = "" +
                 "{" +
                 "code:" + ResultVOEnum.AUTH_FAIL.getCode() +
-                ",message" + ResultVOEnum.AUTH_FAIL.getMessage() +
-                ",data" + null +
-                ",ok" + false +
+                ",message:" + ResultVOEnum.AUTH_FAIL.getMessage() +
+                ",data:" + null +
+                ",ok:" + false +
                 '}';
 
         out.write(info);

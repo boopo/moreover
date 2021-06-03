@@ -43,9 +43,9 @@ public class UserServiceImpl implements UserService {
         userInfo.setUsername(user.getUsername());
         userInfo.setExp(0);
         userInfo.setNickname(user.getUsername());
-        userInfo.setHead(Base64.getDefaultHead());
+        userInfo.setHead("https://pic.imgdb.cn/item/60b6ebf739f6859bc2cc14d2.jpg");
         userInfo.setStars(0);
-        userInfo.setBack("https://img.imgdb.cn/item/606c649e8322e6675ce42f97.jpg");
+        userInfo.setBack("https://p6.toutiaoimg.com/origin/pgc-image/e95a332a5b084d5e82d5b4e3e946895b");
         userInfo.setSex("未知");
         userInfo.setCountOfFollow(0);
         userInfo.setCountOfFollowers(0);

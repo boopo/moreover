@@ -6,6 +6,10 @@ spring:
     password: Flying!0
   data:
     mongodb:
-      uri: mongodb://175.27.164.194:27017/moreover
+      uri: mongodb://admin:123456-abc@175.27.164.194:27017/moreover
 
-    
+tencentOss:
+  SecretId: AKIDqZ5YoqdCZidKo6E8nGVcS2NVQ9gz3tWw
+  SecretKey: JNDqFPK0ThgQzLWS9gz3sUt41jEVWKtH
+  bucket: moreover-1305054989
+  region: ap-nanjing

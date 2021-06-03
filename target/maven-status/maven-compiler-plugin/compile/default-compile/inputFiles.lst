@@ -1,7 +1,9 @@
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\controller\UserInfoController.java
+C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\service\impl\OssServiceImpl.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\entity\CommentPost.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\service\impl\UserServiceImpl.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\repository\UserInfoRepository.java
+C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\service\OssService.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\annotation\Permission.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\service\CommentService.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\utils\JwtUtil.java
@@ -29,6 +31,7 @@ C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\config\S
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\controller\UserController.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\controller\PostControler.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\entity\base\BaseMongoEntity.java
+C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\controller\OssController.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\service\PostService.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\config\MybatisPlusConfig.java
 C:\Users\Noir\IdeaProjects\SpringBoot-stage\src\main\java\com\lv\spring\enums\PermissionEnum.java

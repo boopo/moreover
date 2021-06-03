@@ -133,6 +133,5 @@ public class PostServiceImpl implements PostService {
         post.setCollection(post.getCollection()+1);
         postRepository.save(post);
         userInfoRepository.save(userInfo);
-
     }
 }
