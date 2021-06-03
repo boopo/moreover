@@ -2,10 +2,10 @@ package com.lv.spring;
 
 import com.tencent.cloud.CosStsClient;
 import com.tencent.cloud.Scope;
-import lombok.Value;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 
 
@@ -18,15 +18,21 @@ import java.util.Properties;
 import java.util.TreeMap;
 
 public class tencentOss {
+    @org.springframework.beans.factory.annotation.Value("${tencentOss.SecretId}")
+    private String SecretId;
+
+    @org.springframework.beans.factory.annotation.Value("${tencentOss.SecretKey}")
+    private String SecretKey;
+
+    @org.springframework.beans.factory.annotation.Value(("${tencentOss.bucket}"))
+    private String bucket;
+
+    @Value(("${tencentOss.region}"))
+    private String region;
 
     @Test
     public void testGetCredential() {
         TreeMap<String, Object> config = new TreeMap<String, Object>();
-
-        String SecretId= "AKIDqZ5YoqdCZidKo6E8nGVcS2NVQ9gz3tWw";
-        String SecretKey=  "JNDqFPK0ThgQzLWS9gz3sUt41jEVWKtH";
-        String bucket = "moreover-1305054989";
-        String region = "ap-nanjing";
 
         try {
 
