@@ -157,7 +157,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public String getHead(String username) {
         if(username == null) throw  new ApiException(ResultVOEnum.NOT_FOUND);
-        UserInfo userInfo = getInfo(UserContext.getCurrentUserName());
+        UserInfo userInfo = getInfo(username);
         return userInfo.getHead();
     }
 
